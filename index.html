@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Menu search</title>
+  </head>
+  <body>
+    <select name="" id="js-select" onchange="changeValue()"></select>
+
+    <div class="infoArea">
+      <div id="name"></div>
+      <div class="menu"></div>
+      <div class="price"></div>
+    </div>
+  </body>
+
+  <script>
+    const people = [
+      {
+        name: "ROBO-COOK",
+        menu: "creambbane",
+        price: "11,000"
+      },
+      {
+        name: "DONGKYEUNG-SUGONGUP",
+        menu: "napolitan-pasta",
+        price: "8,000"
+      },
+      {
+        name: "rabbit-jung",
+        menu: "bok-em-spaghetti",
+        price: "6,500"
+      }
+    ];
+    const valueSetting = () => {
+      const selectBox = document.getElementById("js-select");
+      people.map(p => {
+        const option = document.createElement("option");
+        option.text = p.name;
+        selectBox.appendChild(option);
+      });
+    };
+    const changeValue = () => {
+      const selectBox = document.getElementById("js-select");
+      const currentValue = selectBox.options[selectBox.selectedIndex].value;
+
+      people.map(p => {
+        if (p.name === currentValue) {
+          const name = document.getElementById("name");
+          const menu = document.getElementById("menu");
+          const price = document.getElementById("price");
+          name.innerHTML = p.name;
+          menu.innerHTML = p.menu;
+          price.innerHTML = p.price;
+        }
+      });
+    };
+    function init() {
+      valueSetting();
+    }
+    init();
+  </script>
+</html>
